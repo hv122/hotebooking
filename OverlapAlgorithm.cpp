@@ -10,18 +10,6 @@
         to make the ptrs shared
         - return a bool stating whether or not the guest got a room, client can construct guest object
 
-auto count(0);
-for (auto& room : hotel)
-{
-    if (room.max_occupancy == required_space && room.occupied == false)
-    { // assigning guest to a room if available
-        room.allocate_guest(Guest(first_name, last_name, phone_number, required_space, start_date, end_date));
-        room.occupied = true;
-        break;
-    }
-    count++;
-
-    ^^^^^ code from Client, without date checks
 }
 */
 
