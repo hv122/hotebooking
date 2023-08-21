@@ -20,12 +20,19 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Client.cpp" />
+    <ClCompile Include="Date.cpp" />
     <ClCompile Include="Guest.cpp" />
+    <ClCompile Include="OverlapAlgorithm.cpp" />
     <ClCompile Include="Room.cpp" />
     <ClCompile Include="Guest.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Date.h" />
     <ClInclude Include="Room.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="README.md" />
+    <None Include="Requirements.md" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>

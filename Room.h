@@ -8,11 +8,14 @@ class Room
 {
 
 public:
-    Room(int size);
-    bool occupied; // false is vacant, true is occupied
     int max_occupancy;
     int current_occupancy;
+    std::shared_ptr<Guest> guest_ptr;
+
+public:
+    Room(int size);
     void allocate_guest(Guest guest);
+
 };
 
 #endif

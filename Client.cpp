@@ -1,8 +1,9 @@
 #include <iostream>
 #include <vector>
+#include <iomanip>
 
-#include "Guest.h"
 #include "Room.h"
+#include "OverlapAlgorithm.cpp"
 
 int main()
 {
@@ -15,11 +16,12 @@ int main()
     hotel.push_back(Room(3));
     hotel.push_back(Room(4)); // set up three rooms in the hotel
 
-    // ------------------ DATA COLLECTION ---------------------
+    // ----------------- ADDING ROOMS ------------------------
 
-    std::string first_name;
-    std::string last_name;
-    std::string phone_number;
+    // ------------------ DATA COLLECTION & VALIDATION ---------------------
+
+    std::string first_name, last_name, phone_number;
+    int in_day, in_month, in_year, out_day, out_month, out_year;
     auto required_space(0);
 
     std::cout << "Enter the lead guest's first name: ";
@@ -34,19 +36,27 @@ int main()
     std::cout << "How many guests including yourself will be staying? ";
     std::cin >> required_space;
 
-    // ------------------ DATA COLLECTION ---------------------
+    std::cout << "Enter the check in date separated by spaces: ";
+    std::cin >> in_day >> in_month >> in_year;
 
-    auto count(0);
-    for (auto& room : hotel)
-    {
-        if (room.max_occupancy == required_space + room.occupied == false)
-        { // assigning guest to a room if available
-            room.allocate_guest(Guest(first_name, last_name, phone_number, required_space));
-            room.occupied = true;
-            break;
-        }
-        count++;
-    }
+    std::cout << "Enter the check out date separated by spaces: ";
+    std::cin >> out_day >> out_month >> out_year;
+
+    Date start_date(in_day, in_month, in_year); // constructed dates for start and end
+    Date end_date(out_day, out_month, out_year);
+
+    // ------------------ DATA COLLECTION & VALIDATION ---------------------
+    
+
+
+
+    /* ------------------ROOM ALLOCATION-------------------- 
+        
+        Moved to OverlapAlgorithm.cpp
+
+    -------------------------------------------------------*/
+
+    // ------------------ FEEDBACK TO USER ---------------------
 
     if (count == hotel.size())
     {
@@ -57,4 +67,6 @@ int main()
         std::cout << "There is a room booked under the name " << first_name << " " << last_name
             << " for " << required_space << " guests.\n";
     }
+
+    // ------------------ FEEDBACK TO USER ---------------------
 }
