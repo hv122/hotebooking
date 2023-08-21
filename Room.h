@@ -3,6 +3,7 @@
 
 #include "Guest.h"
 #include <memory>
+#include <vector>
 
 class Room
 {
@@ -10,7 +11,7 @@ class Room
 public:
     int max_occupancy;
     int current_occupancy;
-    std::shared_ptr<Guest> guest_ptr;
+    std::vector<std::shared_ptr<Guest>> guests;
 
 public:
     Room(int size);

@@ -3,6 +3,7 @@
 #include <iomanip>
 
 #include "Room.h"
+#include "Guest.h"
 #include "OverlapAlgorithm.cpp"
 
 int main()
@@ -45,27 +46,22 @@ int main()
     Date start_date(in_day, in_month, in_year); // constructed dates for start and end
     Date end_date(out_day, out_month, out_year);
 
+    Guest prospective(first_name, last_name, phone_number, required_space, start_date, end_date);
+
     // ------------------ DATA COLLECTION & VALIDATION ---------------------
     
 
+    // ------------------ FEEDBACK TO USER & ALLOCATION ---------------------
 
-
-    /* ------------------ROOM ALLOCATION-------------------- 
-        
-        Moved to OverlapAlgorithm.cpp
-
-    -------------------------------------------------------*/
-
-    // ------------------ FEEDBACK TO USER ---------------------
-
-    if (count == hotel.size())
+    if (room_allocation(hotel, prospective))
     {
-        std::cout << "Sorry, there are no rooms to match your requirements at the moment.\n";
+        std::cout << "There is a room booked under the name " << prospective.first_name << " " << prospective.last_name
+            << " for " << prospective.number_of_guests << " guests.\n";
+
     }
     else
     {
-        std::cout << "There is a room booked under the name " << first_name << " " << last_name
-            << " for " << required_space << " guests.\n";
+        std::cout << "Sorry, there are no rooms to match your requirements at the moment.\n";
     }
 
     // ------------------ FEEDBACK TO USER ---------------------

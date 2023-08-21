@@ -31,16 +31,36 @@ for (auto& room : hotel)
 #include "Date.h"
 #include "Room.h"
 
-bool room_allocation(std::vector<Room> hotel, int required_space, Date start, Date end) {
-    
+bool doDatesOverlap(const Date& start1, const Date& end1, const Date& start2, const Date& end2) {
+    if (end1.isEarlier(start2)) {
+        return false;
+    }
+    if (end2.isEarlier(start1)) {
+        return false;
+    }
+    return true;
+}
+
+
+bool room_allocation(std::vector<Room> hotel, Guest prospective) {
+
     for (auto& room : hotel)
     {
-        if (room.max_occupancy == required_space)
+        if (room.max_occupancy == prospective.number_of_guests)
         {
-            Guest tmp = std::make_shared(NULL);
+            for (int i = 0; i < room.guests.size(); i++) // vector of guests for the room
+            {
+                Guest tmp = *room.guests[i];
 
-
+                if (doDatesOverlap(tmp.start_date, tmp.end_date, prospective.start_date, prospective.end_date))
+                    return false;
+            }
+            room.guests.push_back(std::make_shared<Guest>(prospective));
+            return true;
         }
+    }
+
+    return false;
 
 }
 
